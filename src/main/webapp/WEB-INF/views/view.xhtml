@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<f:view
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+>
+	<h:head>
+		<h:outputStylesheet library="css" name="main.css" />
+	</h:head>
+	<h:body>
+		<p:panel id="panelId">
+			<h:outputText styleClass="bold-hello-world" value="#{i18n['selectonemenu-hello-world']}" />
+		</p:panel>
+		<ul>
+			<li><em><h:outputText value="#{product.JSF}" /></em></li>
+			<li><em><h:outputText value="#{product.LIFERAY_FACES_BRIDGE}" /></em></li>
+			<li><em><h:outputText value="#{product.LIFERAY_FACES_UTIL}" /></em></li>
+			<li><em><h:outputText value="#{product.PRIMEFACES}" /></em></li>
+		</ul>
+		<h:form>
+			<p:selectOneMenu value="#{question.status}" converter="statusConverter" maxlength="30">
+				<f:selectItem itemLabel="--" itemValue="" />
+				<f:selectItems value="#{data.statuses}" 
+					var="item" itemLabel="#{i18n[item.i18nKey]}" itemValue="#{item}"/>
+				<p:ajax event="change" update="custTel" />
+		  </p:selectOneMenu>
+		 <p></p>
+		 
+		  <p:inputText  id="custTel" value="#{question.status}" />
+		  <p></p>
+		  
+		  <h:commandButton value="Submit" action="result"/>
+       </h:form>
+	</h:body>
+</f:view>
